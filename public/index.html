@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Knapsak - a visual packing list for kids</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+
+  <body>
+
+    <div class="nav-bar d-flex">
+      <img src="./img/Knapsak_logo_nav_long.jpg" width="284px" height="72px" alt="knapsak logo long">
+      <p>a visual packing list for kids</p>
+    </div>
+
+    <div class="header" display="block">
+      <br>
+      <h1>Welcome User!</h1>
+    </div>
+    <!-- <div class="jumbotron bg-success">
+      <h1 class="display-4">Hello Maia!</h1>
+      <p class="lead">Here are your saved knapsak's</p>
+    </div> -->
+
+<!-- ============================================================================== -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <ul id="knapsakLists">
+            <!-- add list of knapsaks dynamically in script here -->
+          </ul>
+        </div>
+
+        <div class="bg-secondary d-flex col-md-8">
+
+        <!-- ================================================
+        CARD   -  ITEM template
+        ================================================ -->
+          <div class="card d-flex flex-row" style="width: 55rem;">
+            <img src="./img/girl_undies.jpg" width="150px" height="150px" alt="item">
+            <div class="card-body">
+              <h5 class="card-title">girls undies</h5>
+              <br>
+
+              <div class="qtyIncButton d-inline-flex p-6">
+                <button type="button" class="btn btn-default btn-number btn-outline-secondary" onclick="minus()">
+                  <span class="fas fa-minus"></span>
+                </button>
+
+                <input type="text" class="form-control input-number col-md-2" value="16" id="qtyCount">
+
+                <button type="button" class="btn btn-default btn-number btn-outline-secondary" onclick="plus()">
+                  <span class="fas fa-plus"></span>
+                </button>
+
+              </div>
+            </div>
+          </div>
+
+              <!-- <div class="input-group">
+
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-number btn-outline-secondary" disabled="disabled" data-type="minus" data-field="quant[1]">
+                    <span class="fas fa-minus"></span>
+                    </button>
+                  </span>
+
+                  <input type="text" name="quant[1]" class="form-control input-number col-md-2" value="16" min="1" max="10">
+
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-number btn-outline-secondary" data-type="plus" data-field="quant[1]">
+                    <span class="fas fa-plus"></span>
+                    </button>
+                  </span>
+
+              </div>
+
+            </div> -->
+
+            <div class="card" style="width: 18rem;">
+              <img src="./img/socks.jpg" width="150px" height="150px" alt="item">
+              <div class="card-body">
+                <h5 class="card-title">socks</h5>
+                <a href="#" class="btn btn-secondary">quanity + -</a>
+              </div>
+            </div>
+
+            <div class="card" style="width: 18rem;">
+              <img src="./img/tshirt.jpg" width="150px" height="150px" alt="item">
+              <div class="card-body">
+                <h5 class="card-title">t-shirt</h5>
+                <a href="#" class="btn btn-secondary">quanity + -</a>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>

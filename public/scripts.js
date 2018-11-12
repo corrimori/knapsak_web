@@ -40,30 +40,35 @@ const loadItems = () => {
     itemData.forEach( element => {
       // create a card from each element
       let itemCard = `
-      <div class="card d-flex flex-row" style="width: 55rem;">
-              <img src="./img/${element.itemImage}" width="150px" height="150px" alt="item">
-              <div class="card-body">
-                <h5 class="card-title">${element.name}</h5>
-                <br>
+        <div class="card d-flex flex-row" style="width: 55rem;">
+          <img src="./img/${element.itemImage}" width="150px" height="150px" alt="item">
+          <div class="card-body">
+            <h5 class="card-title">${element.name}</h5>
+            <br>
 
-                <div class="qtyIncButton d-inline-flex p-6">
-                  <button type="button" class="btn btn-default btn-number btn-outline-secondary" onclick="${minus}">
-                    <span class="fas fa-minus"></span>
-                  </button>
+            <div class="qtyIncButton d-inline-flex p-6">
+              <button type="button" class="btn btn-default btn-number btn-outline-secondary" onclick="${minus}">
+                <span class="fas fa-minus"></span>
+              </button>
 
-                  <input type="text" class="form-control input-number col-md-2" value="${count}" class="count">
+              <input type="text" class="form-control input-number col-md-2" id="${element.id}" value="${count}" class="count">
 
-                  <button type="button" class="btn btn-default btn-number btn-outline-secondary" onclick="plus()">
-                    <span class="fas fa-plus"></span>
-                  </button>
+              <button type="button" class="btn btn-default btn-number btn-outline-secondary" onclick="plus(${element.id})">
+                <span class="fas fa-plus"></span>
+              </button>
 
-                </div>
-              </div>
             </div>
+          </div>
+        </div>
       `
-      let newItemCard = document.createElement('div')
-      newItemCard.innerHTML = itemCard
-      itemsList.appendChild(newItemCard)
+      //append card div to html page
+      let newCard = document.createElement('div')
+      newCard.innerHTML = itemCard
+      itemsList.appendChild(newCard)
+      console.log('el id>>>', element.id);
+      console.log('el>>>', element);
+
+      // console.log('input#>>>', input);
     })
   })
 }
@@ -73,13 +78,29 @@ loadItems()
 // increment counter
 
 let count = 1;
-let counter = document.querySelectorAll(".count");
-function plus(){
+// let counter = document.querySelector("${elId}");
+
+const plus = (elId) => {
   console.log('event>>', event);
+  console.log('element id>>', elId)
+  let tempCtn = document.querySelector("elId")
+  tempCtn.innerHTML = '&'
+  // .appendChild(tempCtn)
+  console.log()
     count++;
     event.target.value = count;
     console.log('count', count);
 }
+
+// function plus(elId){
+//   console.log('event>>', event);
+//   console.log('element id>>', elId)
+//   console.log()
+//     count++;
+//     event.target.value = count;
+//     console.log('count', count);
+// }
+
 function minus(){
   if (count > 1) {
     count--;

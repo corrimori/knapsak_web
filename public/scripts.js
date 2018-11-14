@@ -6,7 +6,7 @@ const loadKnapsaks = () => {
   let knskList = document.querySelector('#knapsakLists')
   knskList.innerHTML = ''
 
-  axios.get(apiUrl + '/knapsaks').then(result => {
+  axios.get(apiUrl + '/users/' + 2 + '/knapsaks').then(result => {
     console.log('result.data------->', result.data)
     let data = result.data
     console.log('result.data[0]>>>', result.data[0]);
@@ -23,11 +23,9 @@ const loadKnapsaks = () => {
   })
 } // end function loadKnapsaks
 
-
 // add items to page, add counter with increment functionality
 const loadItems = () => {
   console.log('loading items...')
-
   let itemsList = document.querySelector('#items-container')
 
   axios.get(apiUrl + '/items').then(result => {
@@ -77,7 +75,7 @@ const loadItems = () => {
         let count = document.querySelector(`#qty-${element.name}`).value
         if (count > 0)
         document.querySelector(`#qty-${element.name}`).value--
-        localStorage.setItem(${element.name}:count)
+        // localStorage.setItem(${element.name}:count)
       })
 
       // plus qty from input value button
@@ -85,16 +83,16 @@ const loadItems = () => {
 
       plusButton.addEventListener("click", () => {
         document.querySelector(`#qty-${element.name}`).value++
-        {name1: element.name,
-        quantity: count},
-        name2: 5,
-        save btn
+        // {name1: element.name,
+        // quantity: count},
+        // name2: 5,
+        // save btn
       })
     })
   })
 }
 
-let storeKnapsak = {'boy_undies': 0, 'girl_undies': 0, 'socks': 0, 'tshirt': 0, 'longsleeve': 0, 'shorts': 0, 'pants': 0, 'skirt': 0, 'jacket': 0, 'shoes': 0, 'boy_swimsuit': 0, 'girl_swimsuit': 0, 'toothbrush': 0}
+// let storeKnapsak = {'boy_undies': 0, 'girl_undies': 0, 'socks': 0, 'tshirt': 0, 'longsleeve': 0, 'shorts': 0, 'pants': 0, 'skirt': 0, 'jacket': 0, 'shoes': 0, 'boy_swimsuit': 0, 'girl_swimsuit': 0, 'toothbrush': 0}
 
 // const getQty = () => {
 //   let itemQty = document.querySelector(`#qty-${element.name}`).value

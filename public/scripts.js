@@ -19,15 +19,12 @@ const loadKnapsaks = () => {
         console.log('element id>>', element.id)
         console.log('element userid>>', element.user_id);
       })
-
     })
-
   })
-
 } // end function loadKnapsaks
 
-loadKnapsaks()
 
+// add items to page, add counter with increment functionality
 const loadItems = () => {
   console.log('loading items...')
 
@@ -41,8 +38,8 @@ const loadItems = () => {
 
     itemData.forEach( element => {
       // create an object to store the quanity of each item
-      qtyObj[`${element.id}`] = 1
-      console.log('qtyobj>>>', qtyObj);
+      // qtyObj[`${element.id}`] = 1
+      // console.log('qtyobj>>>', qtyObj);
 
       // create a card from each element
       let itemCard = `
@@ -80,6 +77,7 @@ const loadItems = () => {
         let count = document.querySelector(`#qty-${element.name}`).value
         if (count > 0)
         document.querySelector(`#qty-${element.name}`).value--
+        localStorage.setItem(${element.name}:count)
       })
 
       // plus qty from input value button
@@ -87,52 +85,42 @@ const loadItems = () => {
 
       plusButton.addEventListener("click", () => {
         document.querySelector(`#qty-${element.name}`).value++
+        {name1: element.name,
+        quantity: count},
+        name2: 5,
+        save btn
       })
-
     })
   })
 }
 
+let storeKnapsak = {'boy_undies': 0, 'girl_undies': 0, 'socks': 0, 'tshirt': 0, 'longsleeve': 0, 'shorts': 0, 'pants': 0, 'skirt': 0, 'jacket': 0, 'shoes': 0, 'boy_swimsuit': 0, 'girl_swimsuit': 0, 'toothbrush': 0}
+
+// const getQty = () => {
+//   let itemQty = document.querySelector(`#qty-${element.name}`).value
+//   console.log('itemQty', itemQty)
+//
+//   getQtyButton.addEventListener = ("click", (${element.id}) => {
+//     let itemQty = document.querySelector(`#qty-${element.name}`).value
+//     console.log('itemQty', itemQty)
+//   })
+// }
+//
+// LOCAL STORAGE =================================
+// // Save data to the current local store
+// localStorage.setItem("username", "John");
+//
+// // Access some stored data
+// alert( "username = " + localStorage.getItem("username"));
+
+
+
+loadKnapsaks()
 loadItems()
 
-// increment counter
+// console.log('finished loading functions...');
+console.log('boy undies>> ', document.querySelector('#qty-boy_undies').value);
 
-// let count = 1;
-// let counter = document.querySelector("${elId}");
 
-const plus = (elId, qtyObj) => {
-  console.log('event>>', event);
-  console.log('el id>>', elId)
-  console.log('qtyObj in plus>>>>', qtyObj);
-
-  console.log('count variable>>> ', `count${elId}`)
-  // let `count${elId}` = 8
-
-  // {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1, 11: 1, 12: 1, 13: 1}
-
-  document.getElementById(elId).value = 2
-  // let inputVal = document.getElementById("elId")
-  // inputVal.innerHTML = 5
-  // tempCtn.innerHTML = '&'
-  // .appendChild(tempCtn)
-
-    count++;
-    event.target.value = count;
-    console.log('count', count);
-}
-
-// function plus(elId){
-//   console.log('event>>', event);
-//   console.log('element id>>', elId)
-//   console.log()
-//     count++;
-//     event.target.value = count;
-//     console.log('count', count);
-// }
-
-function minus(){
-  if (count > 1) {
-    count--;
-    counter.value = count;
-  }
-}
+// document.getElementById(elId).value = 2
+// {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1, 11: 1, 12: 1, 13: 1}

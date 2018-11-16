@@ -148,24 +148,24 @@ const formSubmit = (e) => {
 
   // for each item, post to database
   itemQtys.forEach((item) => {
-    console.log('item>>', item)
     let knapsak_id = JSON.parse(localStorage.getItem('knapsak_id'))
-    let item_id = item.getAttribute('data-item')
-    let quantity = item.value
+    let item_id = +item.getAttribute('data-item')
+    let quantity = +item.value
     let payload = { knapsak_id, item_id, quantity }
     console.log('payload', payload);
 
-
     // knapsak/1/items
-    // axios.post(`${apiUrl}/knapsaks/${knapsak_id}/items`, payload )
-    //   // console.log('in axios post ... ');
-    //   .then(response => {
-    //     console.log('saved successfully')
-    //   });
+    axios.put(`${apiUrl}/knapsaks/${knapsak_id}/items/${item_id}`, payload )
+      // console.log('in axios post ... ');
+      .then(response => {
+        console.log('saved successfully')
+      });
 
     // add axios post with payload to create knapsak_item
   })
+  window.location.replace("toPrint.html")
 }
+
 
 // ==========================================
 //  LSKDGSGJSG JSG
@@ -194,6 +194,7 @@ const createNewKnapsak = () => {
 
   axios.post(`${apiUrl}/knapsaks`, payload )
     .then(response => {
+      loadKnapsaks()
       console.log('new knapsak saved successfully')
     });
 

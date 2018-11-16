@@ -1,5 +1,9 @@
 // const toPrint = require('./folder/jsfile')
 
+// document.querySelector("button").onclick = function () {
+//   window.print();
+// }
+
 let apiUrl = 'http://localhost:8010'
 
 // ==========================================
@@ -24,7 +28,7 @@ const loadItems = () => {
        // style="width: 55rem;"
       console.log('elem>>>', element);
       let itemToPrint = `
-        <div class="d-flex flex-row">
+        <div class="print-square">
           <img src="./img/${element.itemImage}" width="150px" height="150px" alt="item">
         </div>
       `

@@ -1,5 +1,5 @@
 h1 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   margin-top: 0px;
   margin-left: 80px;
   margin-bottom: 0px;
@@ -7,14 +7,14 @@ h1 {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 ul {
   list-style-type: none;
   margin: 0px;
   padding: 5px;
-  width: 250px;
+  width: 300px;
   /* background-color: #85C1E9; */
 }
 
@@ -25,6 +25,11 @@ li {
   border: 1px solid black;
 }
 
+/* Darker background-color on hover */
+ul li:hover {
+  background: #9cd67d;
+}
+
 .nav-bar {
   margin: 0px;
   background-color: #ffe800;
@@ -33,7 +38,7 @@ li {
 }
 
 .header {
-  margin: 0px;
+  margin-bottom: 20px;
   background-color: #fff;
   /* background-color: #52BE80;    #ffe800  yellow */
   height: 90px;

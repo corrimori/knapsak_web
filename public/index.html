@@ -27,20 +27,32 @@
     <div class="container">
       <div class="row">
 
-        <div class="col-md-4">
+        <!-- < ********************************* > -->
+        <div class="col-sm-4">
+          <h5>Saved Knapsaks</h5>
           <ul id="knapsak-lists">
-            <!-- add list of knapsaks dynamically in script here -->
+            <!-- loadKnapsaks() add list of knapsaks dynamically in script here -->
           </ul>
+          <form>
+            <button class="btn btn-success" id="newKnapsakBtn" type="button" onclick="createNewKnapsak()">New Knapsak</button>
+
+            <div id="displayInput">
+              <p>enter new knapsak name:</p>
+              <textarea type="text" id="newKsName"></textarea><br>
+            </div>
+          </form>
         </div>
 
-          <div class="bg-secondary d-flex col-md-8">
-            <form id="knapsak-form">
-              <div id="items-container">
-                <!-- item cards inserted here -->
-              </div>
-              <button type=submit>submit</button>
-            </form>
-          </div>
+        <!-- < ********************************* > -->
+        <!-- <div class="bg-secondary d-flex col-md-8"> -->
+        <div class="col-sm-auto" d-flex >
+          <form id="knapsak-form">
+            <button type=submit class="btn btn-primary">save</button>
+            <div id="items-container">
+              <!-- item cards inserted here -->
+            </div>
+          </form>
+        </div>
 
       </div>
     </div>

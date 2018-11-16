@@ -1,35 +1,52 @@
 let apiUrl = 'http://localhost:8010'
+let userId = 2
+let user_id = 2
+
+// ==========================================
+//  LOADS KNAPSAK LIST ON left
+// ==========================================
 
 const loadKnapsaks = () => {
   console.log('loading knapsaks...')
 
   let knskList = document.querySelector('#knapsak-lists')
   knskList.innerHTML = ''
-  let userId = 2
 
+  // get all knapsaks belonging to a user
   axios.get(`${apiUrl}/users/${userId}/knapsaks`).then(result => {
-    console.log('result.data------->', result.data)
     let data = result.data
-    console.log('result.data[0]>>>', result.data[0]);
+
+    console.log('result.data------->', result.data)
+    // console.log('result>>>>', result);
+    // console.log('result.data[0]>>>', result.data[0]);
+
     data.forEach( element => {
       let descItem = document.createElement('li')
       descItem.innerHTML = element.description
+
       knskList.appendChild(descItem).addEventListener('click', () => {
-        let knskListId = element.id
-        console.log('>>', knskListId);
-        localStorage.setItem('knapsak_id', JSON.stringify(knskListId))
+        let knapsakId = element.id
+        localStorage.setItem('knapsak_id', JSON.stringify(knapsakId))
         console.log('button clicked!');
-        console.log('element id>>', element.id)
+        console.log(`saved knapsak id ${knapsakId} to LOCAL STORAGE`)
+        console.log('element id>>', element.id)  // knapsakId
         console.log('element userid>>', element.user_id);
         loadItems()
       })
     })
-  })
+
+  }) // end axios
 } // end function loadKnapsaks
 
 loadKnapsaks()
 
-// add items to page, add counter with increment functionality
+// let displayKsInput = document.getElementById('#displayInput')
+// displayKsInput.style.display = 'none'
+
+// ==========================================
+//  LOADS ITEMS in KNAPSAK
+// ==========================================
+
 const loadItems = () => {
   console.log('loading items...')
 
@@ -39,17 +56,15 @@ const loadItems = () => {
   let itemsList = document.querySelector('#items-container')
   let knapsakId = JSON.parse(localStorage.getItem('knapsak_id'))
 
-  //grab items related to knapsak
+  // GET items related to knapsak
+  // axios.get(`${apiUrl}/knapsaks/${knapsakId}/items`).then(result => {
   axios.get(`${apiUrl}/knapsaks/${knapsakId}/items`).then(result => {
     console.log('result.data ITEMS -------->', result.data);
-    console.log('name', result.data[3].name);
+    // console.log('name', result.data[3].name);
     let itemData = result.data
     let qtyObj = {}
 
     itemData.forEach( element => {
-      // create an object to store the quanity of each item
-      // qtyObj[`${element.id}`] = 1
-      // console.log('qtyobj>>>', qtyObj);
 
       // create a card from each element
       console.log('elem>>>', element);
@@ -96,10 +111,6 @@ const loadItems = () => {
 
       plusButton.addEventListener("click", () => {
         document.querySelector(`#qty-${element.name}`).value++
-        // {name1: element.name,
-        // quantity: count},
-        // name2: 5,
-        // save btn
       })
     })
   })
@@ -107,23 +118,81 @@ const loadItems = () => {
 
 const formSubmit = (e) => {
   e.preventDefault()
-  console.log('working form submit')
-  // get knapsak id - stored in local storage?
+  console.log('working form submit ...')
+  // retrieve knapsak id - stored in local storage
   let itemQtys = document.querySelectorAll(".qty-item")
-  itemQtys.forEach( (item) => {
+  console.log('itemQtys---------->>', itemQtys);
+
+  // for each item, post to database
+  itemQtys.forEach((item) => {
     let knapsak_id = JSON.parse(localStorage.getItem('knapsak_id'))
     let item_id = item.getAttribute('data-item')
     let quantity = item.value
     let payload = { knapsak_id, item_id, quantity }
     console.log('payload', payload);
 
-    // axios post with payload
+
+    // knapsak/1/items
+    // axios.post(`${apiUrl}/knapsaks/${knapsak_id}/items`, payload )
+    //   // console.log('in axios post ... ');
+    //   .then(response => {
+    //     console.log('saved successfully')
+    //   });
+
+    // add axios post with payload to create knapsak_item
   })
 }
-let form = document.querySelector("#knapsak-form")
-form.addEventListener("submit", formSubmit)
 
-// let storeKnapsak = {'boy_undies': 0, 'girl_undies': 0, 'socks': 0, 'tshirt': 0, 'longsleeve': 0, 'shorts': 0, 'pants': 0, 'skirt': 0, 'jacket': 0, 'shoes': 0, 'boy_swimsuit': 0, 'girl_swimsuit': 0, 'toothbrush': 0}
+// ==========================================
+//  LSKDGSGJSG JSG
+// ==========================================
+
+let newKsform = document.querySelector("#knapsak-form")
+  newKsform.addEventListener("submit", formSubmit)
+
+
+// ==========================================
+//  Create New Knapsak and Display items
+// ==========================================
+
+const createNewKnapsak = () => {
+  console.log('new knapsk button clicked');
+  // displayKsInput.style.display = 'block'
+  let newKnapsak = document.querySelector('#newKsName').value
+  console.log('newKnapsak>>>>', newKnapsak);
+
+  // ** get user_id from Local Storage
+  // let user_id = JSON.parse(localStorage.getItem('user_id'))
+  let description = newKnapsak
+  let user_id = 2
+  let payload = { description, user_id }
+  console.log('payload', payload);
+
+  axios.post(`${apiUrl}/knapsaks`, payload )
+    .then(response => {
+      console.log('new knapsak saved successfully')
+    });
+
+  axios.get(`${apiUrl}/knapsaks`)
+    .then(response => {
+      // get the last id that was created
+      console.log('response.data>>>', response.data)
+      newKsIndex = response.data.length - 1
+      newKsId = response.data[newKsIndex].id
+      console.log('newKsIndex>>', newKsIndex);
+      console.log('newKS id>>>', newKsId);
+      localStorage.setItem('knapsak_id', JSON.stringify(newKsId))
+    })
+
+  // get knapsak id
+  // get description username
+  // axios - create new ks:
+  //  - description
+  //  - user_id
+  // SAVE knapsak.id to LOCAL storage
+  // clear contents col 2
+  // get all items from knapsak_items table for KS_items
+}
 
 // const getQty = () => {
 //   let itemQty = document.querySelector(`#qty-${element.name}`).value
@@ -142,10 +211,7 @@ form.addEventListener("submit", formSubmit)
 // // Access some stored data
 // alert( "username = " + localStorage.getItem("username"));
 
-
-// console.log('finished loading functions...');
-console.log('boy undies>> ', document.querySelector('#qty-boy_undies').value);
-
+// let storeKnapsak = {'boy_undies': 0, 'girl_undies': 0, 'socks': 0, 'tshirt': 0, 'longsleeve': 0, 'shorts': 0, 'pants': 0, 'skirt': 0, 'jacket': 0, 'shoes': 0, 'boy_swimsuit': 0, 'girl_swimsuit': 0, 'toothbrush': 0}
 
 // document.getElementById(elId).value = 2
 // {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1, 11: 1, 12: 1, 13: 1}

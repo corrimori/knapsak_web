@@ -12,14 +12,14 @@ body {
 
 ul {
   list-style-type: none;
-  margin: 20px;
+  margin: 0px;
   padding: 5px;
-  width: 300px;
-  background-color: #85C1E9;
+  width: 250px;
+  /* background-color: #85C1E9; */
 }
 
 li {
-  margin: 10px;
+  margin-bottom: 12px;
   display: block;
   padding: 8px 16px;
   border: 1px solid black;
@@ -39,6 +39,7 @@ li {
   height: 90px;
 }
 
+/* not active - in progress */
 .card-item {
   position: relative;
   display: -ms-flexbox;

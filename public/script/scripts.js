@@ -32,6 +32,14 @@ const loadKnapsaks = () => {
       let descItem = document.createElement('li')
       descItem.innerHTML = element.description
 
+      // Add close x to delete knapsak
+      let span = document.createElement("SPAN");
+      let txt = document.createTextNode("\u00D7");
+      span.className = "close";
+      span.appendChild(txt);
+      knskList.appendChild(span);
+
+      // Add click on each Knapsak
       knskList.appendChild(descItem).addEventListener('click', () => {
         let knapsakId = element.id
         localStorage.setItem('knapsak_id', JSON.stringify(knapsakId))
@@ -39,9 +47,12 @@ const loadKnapsaks = () => {
         console.log(`saved knapsak id ${knapsakId} to LOCAL STORAGE`)
         console.log('element id>>', element.id)  // knapsakId
         console.log('element userid>>', element.user_id);
+
         loadItems()
       })
+
     })
+
 
   }) // end axios
 } // end function loadKnapsaks
@@ -211,6 +222,15 @@ const createNewKnapsak = () => {
 
   clearDisplay()
   loadItems()
+
+  const saveBtn = () => {
+    console.log('in save button function ... ');
+    // link to print page
+    window.location.href = "../toPrint.html";
+    // trigger collecting qty and post to db
+  }
+
+
 }
 
 //==================================================

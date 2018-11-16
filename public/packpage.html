@@ -7,7 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="styles.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" media="screen">
     <link rel="stylesheet" type="text/css" href="print.css" media="print">
   </head>
 
@@ -47,7 +47,8 @@
         <!-- <div class="bg-secondary d-flex col-md-8"> -->
         <div class="col-sm-8" d-flex >
           <form id="knapsak-form">
-            <button type=submit class="btn mb-4 btn-primary float-right">Save Knapsak</button>
+            <button type=submit class="btn mb-4 btn-primary float-right" onclick="saveBtn()">Save Knapsak</button>
+
             <div id="items-container">
               <!-- item cards inserted here -->
             </div>
@@ -57,6 +58,6 @@
       </div>
     </div>
 
-    <script src="scripts.js"></script>
+    <script src="./script/scripts.js"></script>
   </body>
 </html>

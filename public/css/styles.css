@@ -1,3 +1,8 @@
+/* Include the padding and border in an element's total width and height */
+* {
+  box-sizing: border-box;
+}
+
 h1 {
   font-family: "Montserrat", sans-serif;
   margin-top: 0px;
@@ -67,4 +72,16 @@ ul li:hover {
   margin-top: 0px;
   /* margin-bottom: 20px; */
   /* padding: 8px 16px; */
+}
+
+/* Style the close button */
+.close {
+  position: relative;
+  /* right: 0; */
+  /* top: 0; */
+  padding: 10px 14px 10px 14px;
+}
+
+.close:hover {
+  background-color: #F5B041;
 }

@@ -37,7 +37,10 @@ const loadKnapsaks = () => {
       let txt = document.createTextNode("\u00D7");
       span.className = "close";
       span.appendChild(txt);
-      knskList.appendChild(span);
+      let knapsakId = element.id
+      knskList.appendChild(span).addEventListener('click', deleteKnapsak(knapsakId))
+      // knskList.appendChild(span).addEventListener('click', deleteKnapsak(knapsakId))
+
 
       // Add click on each Knapsak
       knskList.appendChild(descItem).addEventListener('click', () => {
@@ -59,6 +62,15 @@ const loadKnapsaks = () => {
 
 loadKnapsaks()
 
+// delete knapsak with id onClick of X
+const deleteKnapsak = (knapsakId) => {
+   axios.delete(`${apiUrl}/knapsaks/${knapsakId}`).then( result => {
+     let data = result.data
+     console.log('knapsak successfully removed');
+     loadKnapsaks()
+   })
+}
+
 // let displayKsInput = document.getElementById('#displayInput')
 // displayKsInput.style.display = 'none'
 
@@ -79,12 +91,11 @@ const loadItems = () => {
   let knapsakId = JSON.parse(localStorage.getItem('knapsak_id'))
 
   // GET items related to knapsak
-  // axios.get(`${apiUrl}/knapsaks/${knapsakId}/items`).then(result => {
-  axios.get(`${apiUrl}/knapsaks/${knapsakId}/items`).then(result => {
+  axios.get(`${apiUrl}/knapsaks/${knapsakId}/items`)
+    .then(result => {
     console.log('result.data ITEMS -------->', result.data);
     // console.log('name', result.data[3].name);
     let itemData = result.data
-    // let qtyObj = {}
 
     itemData.forEach( element => {
 
@@ -155,6 +166,7 @@ const formSubmit = (e) => {
     console.log('payload', payload);
 
     // knapsak/1/items
+    // update the quantity of the items
     axios.put(`${apiUrl}/knapsaks/${knapsak_id}/items/${item_id}`, payload )
       // console.log('in axios post ... ');
       .then(response => {
@@ -168,7 +180,7 @@ const formSubmit = (e) => {
 
 
 // ==========================================
-//  LSKDGSGJSG JSG
+//  Listen submit, call formSumbit function
 // ==========================================
 
 let newKsform = document.querySelector("#knapsak-form")
@@ -192,22 +204,23 @@ const createNewKnapsak = () => {
   let payload = { description, user_id }
   console.log('payload', payload);
 
+  // create a new knapsak
   axios.post(`${apiUrl}/knapsaks`, payload )
     .then(response => {
       loadKnapsaks()
       console.log('new knapsak saved successfully')
     });
 
+  // get all knapsaks
   axios.get(`${apiUrl}/knapsaks`)
     .then(response => {
       // get the last id that was created
-      console.log('response.data>>>', response.data)
       newKsIndex = response.data.length - 1
       newKsId = response.data[newKsIndex].id
       localStorage.setItem('knapsak_id', JSON.stringify(newKsId))
     })
 
-  // for Each item, post row to db
+  // for Each item, post row to db to fill KS with all 13 items
   for (var i = 1; i < 14; i++) {
     let knapsak_id = JSON.parse(localStorage.getItem('knapsak_id'))
     item_id = i
@@ -224,12 +237,10 @@ const createNewKnapsak = () => {
   clearDisplay()
   loadItems()
 
-  const saveBtn = () => {
-    console.log('in save button function ... ');
-    // link to print page
-    window.location.href = "../toPrint.html";
-    // trigger collecting qty and post to db
-  }
+
+  // link to print page
+  // window.location.href = "../toPrint.html";
+  // trigger collecting qty and post to db
 
 
 }

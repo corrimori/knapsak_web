@@ -29,8 +29,8 @@ const loadKnapsaks = () => {
     // console.log('result.data[0]>>>', result.data[0]);
 
     data.forEach( element => {
-      let descItem = document.createElement('li')
-      descItem.innerHTML = element.description
+      let knapsakList = document.createElement('li')
+      knapsakList.innerHTML = element.description
 
       // Add close x to delete knapsak
       let span = document.createElement("SPAN");
@@ -38,12 +38,19 @@ const loadKnapsaks = () => {
       span.className = "close";
       span.appendChild(txt);
       let knapsakId = element.id
-      knskList.appendChild(span).addEventListener('click', deleteKnapsak(knapsakId))
+
+      knskList.appendChild(span).addEventListener('click', () => {
+        console.log('knapsakId>>>', knapsakId)
+        axios.delete(`${apiUrl}/knapsaks/${knapsakId}`).then( result => {
+          let data = result.data
+          console.log('knapsak successfully removed');
+          loadKnapsaks()
+        })
+      })
       // knskList.appendChild(span).addEventListener('click', deleteKnapsak(knapsakId))
 
-
       // Add click on each Knapsak
-      knskList.appendChild(descItem).addEventListener('click', () => {
+      knskList.appendChild(knapsakList).addEventListener('click', () => {
         let knapsakId = element.id
         localStorage.setItem('knapsak_id', JSON.stringify(knapsakId))
         console.log('button clicked!');

@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="img/knapsak_logo.png" width="250"/>
+  <img src="public/img/knapsak_logo.png" width="250"/>
 </div>
 
 # Knapsak Web App
@@ -8,7 +8,7 @@ A visual packing app for young kids
 
 ### The Problem
 
-"We are going to grandma and grandpa's. Pack up!"
+"We are going to Grandma and Grandpa's. Pack up!"s
 
 I find that many times as a mom, I am not only packing for myself but I end up packing for the kids as well. There are many packing list apps out there but what if your kid is too small to read? They can still pack for a trip with a visual packing list!
 
@@ -19,13 +19,9 @@ I find that many times as a mom, I am not only packing for myself but I end up p
 - Generates a printed list for you kids to check-off
 - Kids learn responsibility by packing for themselves
 
-## Author
-
----
+### Author
 
 Built by @CorriMori for Q2 Project at Galvanize’s Web Development Immersive.
 
 This project uses HTML, CSS, javascript, Git, and GitHub.
 Illustrations are original and drawn by @CorriMori.
-
----

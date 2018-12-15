@@ -1,4 +1,9 @@
-#Knapsak Web App
+<div align="center">
+  <img src="img/knapsak_logo.png" width="250"/>
+</div>
+
+# Knapsak Web App
+
 A visual packing app for young kids
 
 ### The Problem
